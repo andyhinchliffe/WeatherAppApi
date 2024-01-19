@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { ApiClient } from "@/utils/ApiClient";
 import WeatherCard from "@/components/WeatherCard";
-import WeatherSearch from "@/components/WeatherSearch";
+import LocationSearch from "@/components/LocationSearch";
+import axios from 'axios';
 import WeatherCardSmall from "@/components/WeatherCardSmall";
 import "../app/globals.css";
 
@@ -26,14 +27,15 @@ export default function Home() {
     timezone2: "",
   });
 
+
   // Function to fetch weather data
   const getThisWeekWeather = async () => {
     try {
-      let response = await apiClient.getWeather(); // Ensure that your getWeather function fetches data from the correct endpoint
+      let response = await apiClient.getWeather(); 
 
       console.log(response.data);
 
-      // Modification added to setWeather
+     
       setWeather((prevWeather) => ({
         ...prevWeather,
         location: response.data.body.timezone,
@@ -106,6 +108,9 @@ export default function Home() {
           ))}
           </div>
         </div>
+        <LocationSearch 
+        
+        />
       </main>
       );
       }
